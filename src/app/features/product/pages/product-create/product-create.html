@@ -1,1 +1,45 @@
-<p>product-create works!</p>
+<div class="container">
+  <div>
+    <h2>Ajouter un Produit :</h2>
+  </div>
+  <form >
+
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label >ID  Produit</label>
+      <input   type="text"  [(ngModel)]="newProduct.id"
+               name="id" class="form-control">
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4" >
+      <label >Nom Produit</label>
+      <input  type="text"[(ngModel)]= "newProduct.name"
+              name="name" class="form-control">
+    </div>
+
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label >Prix Produit</label>
+      <input type="number"   [(ngModel)]= "newProduct.stock"
+             name="stock" class="form-control">
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label >Date création</label>
+      <input type="date"  [(ngModel)]= "newProduct.created_at"
+             name="dateCreation" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label >Date modification</label>
+      <input type="date"  [(ngModel)]= "newProduct.updated_at"
+             name="dateModification" class="form-control">
+    </div>
+
+
+    <div class="mt-2">
+      <button type="submit" (click)="createProduct()"class="btn btn-success">Ajouter</button>
+    </div>
+
+    <div class="mt-2">
+      <h3>{{message}}</h3>
+    </div>
+  </form>
+</div>

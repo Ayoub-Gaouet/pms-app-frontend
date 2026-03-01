@@ -1,1 +1,36 @@
-<p>product-list works!</p>
+<div class="container">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table class="table table-striped">
+        <tr>
+          <th>N°</th>
+          <th>Id</th>
+          <th>Nom</th>
+          <th>Stock</th>
+          <th>Date Création</th>
+          <th>Date Modification</th>
+        </tr>
+        @for (produit of produits; track produit.id; let index = $index; let nbr = $count; let first = $first; let
+          last = $last) {
+          @if (first) {
+            <h1>Nombre : {{ nbr }}</h1>
+          }
+
+          <tbody>
+          <tr>
+            <td>{{ index }}</td>
+            <td>{{ produit.id }}</td>
+            <td>{{ produit.name }}</td>
+            <td>{{ produit.stock }}</td>
+            <td>{{ produit.created_at | date:'dd/MM/yyyy' }}</td>
+            <td>{{ produit.updated_at | date:'dd/MM/yyyy' }}</td>
+          </tr>
+          </tbody>
+        } @empty {
+          <h1>Aucun produit trouvé !</h1>
+        }
+
+      </table>
+    </div>
+  </div>
+</div>
