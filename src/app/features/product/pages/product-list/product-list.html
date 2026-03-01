@@ -9,8 +9,10 @@
           <th>Stock</th>
           <th>Date Création</th>
           <th>Date Modification</th>
+          <th>Supprimer</th>
+          <th>Modifier</th>
         </tr>
-        @for (produit of produits; track produit.id; let index = $index; let nbr = $count; let first = $first; let
+        @for (productModel of products; track productModel.id; let index = $index; let nbr = $count; let first = $first; let
           last = $last) {
           @if (first) {
             <h1>Nombre : {{ nbr }}</h1>
@@ -19,11 +21,13 @@
           <tbody>
           <tr>
             <td>{{ index }}</td>
-            <td>{{ produit.id }}</td>
-            <td>{{ produit.name }}</td>
-            <td>{{ produit.stock }}</td>
-            <td>{{ produit.created_at | date:'dd/MM/yyyy' }}</td>
-            <td>{{ produit.updated_at | date:'dd/MM/yyyy' }}</td>
+            <td>{{ productModel.id }}</td>
+            <td>{{ productModel.name }}</td>
+            <td>{{ productModel.stock }}</td>
+            <td>{{ productModel.created_at | date:'dd/MM/yyyy' }}</td>
+            <td>{{ productModel.updated_at | date:'dd/MM/yyyy' }}</td>
+            <td><a class="btn btn-danger" (click)="deleteProduct(productModel)">Supprimer</a></td>
+            <td><a class="btn btn-success" [routerLink]="['/updateProduct',productModel.id]">Modifier</a></td>
           </tr>
           </tbody>
         } @empty {

@@ -1,0 +1,40 @@
+<div class="container">
+  <div>
+    <h2>Modifier un Produit :</h2>
+  </div>
+  <form >
+    <div  class="col-sm-2 col-md-2 col-lg-2">
+      <label >ID  Produit</label>
+      <input  readonly  type="text"  [(ngModel)]="currentProduct.id"
+              name="id" class="form-control">
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4" >
+      <label >Nom Produit</label>
+      <input  type="text"[(ngModel)]= "currentProduct.name"
+              name="name" class="form-control">
+    </div>
+
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label >Stock</label>
+      <input type="number"   [(ngModel)]= "currentProduct.stock"
+             name="stock" class="form-control">
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label >Date création</label>
+      <input  type="date"  [ngModel]="currentProduct.created_at | date: 'yyyy-MM-dd'"
+              (ngModelChange)=" currentProduct.created_at= $event"   name="dateCreation"
+              class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label >Date modification</label>
+      <input  type="date"  [ngModel]="currentProduct.updated_at | date: 'yyyy-MM-dd'"
+              (ngModelChange)=" currentProduct.updated_at= $event"   name="dateModification"
+              class="form-control">
+    </div>
+    <div class="mt-2">
+      <button type="submit" (click)="updateProduct()" class="btn btn-success">Modifer</button>
+    </div>
+  </form>
+</div>
