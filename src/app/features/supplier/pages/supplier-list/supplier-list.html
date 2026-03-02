@@ -1,1 +1,49 @@
-<p>supplier-list works!</p>
+<div class="container">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <table class="table table-striped">
+        <tr>
+          <th>N°</th>
+          <th>Id</th>
+          <th>Nom</th>
+          <th>Numéro fiscal</th>
+          <th>Numéro du télephone</th>
+          <th>Adresse</th>
+          <th>Catégorie</th>
+          <th>Date Création</th>
+          <th>Date Modification</th>
+          <th>Supprimer</th>
+          <th>Modifier</th>
+        </tr>
+        @for (supplierModel of suppliers; track supplierModel.id; let index = $index; let nbr = $count; let first = $first) {
+          @if (first) {
+            <h1>Nombre : {{ nbr }}</h1>
+          }
+
+          <tbody>
+          <tr>
+            <td>{{ index }}</td>
+            <td>{{ supplierModel.id }}</td>
+            <td>{{ supplierModel.name }}</td>
+            <td>{{ supplierModel.taxNumber }}</td>
+            <td>{{ supplierModel.telephoneNumber }}</td>
+            <td>{{ supplierModel.address }}</td>
+            @if(supplierModel.category){
+              <td>{{supplierModel.category.nom}}</td>  }
+            @else {
+              <td>'PAS DE CATEGORIE'</td>
+            }
+            <td>{{ supplierModel.created_at | date:'dd/MM/yyyy' }}</td>
+            <td>{{ supplierModel.updated_at | date:'dd/MM/yyyy' }}</td>
+            <td><a class="btn btn-danger" (click)="deleteSupplier(supplierModel)">Supprimer</a></td>
+            <td><a class="btn btn-success" [routerLink]="['/updateSupplier',supplierModel.id]">Modifier</a></td>
+          </tr>
+          </tbody>
+        } @empty {
+          <h1>Aucun fournisseur trouvé !</h1>
+        }
+
+      </table>
+    </div>
+  </div>
+</div>

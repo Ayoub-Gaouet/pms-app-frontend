@@ -7,5 +7,6 @@ export class SupplierModel {
   telephoneNumber?: string;
   address?: string;
   category!: CategoryModel;
-
+  created_at?: Date;
+  updated_at?: Date;
 }
