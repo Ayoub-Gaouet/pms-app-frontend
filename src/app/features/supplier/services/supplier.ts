@@ -1,8 +1,46 @@
 import { Injectable } from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {environment} from '../../../../environments/environment';
+import {SupplierModel} from '../models/supplier.model';
+import {CategoryModel} from '../models/category.model';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root',
 })
 export class Supplier {
-  
+  suppliers!: SupplierModel[];
+
+  constructor(private http: HttpClient) {
+  }
+
+  listSuppliers(): Observable<SupplierModel[]> {
+    return this.http.get<SupplierModel[]>(environment.apiURL+"/suppliers");
+  }
+
+  viewSupplier(id: number): Observable<SupplierModel> {
+    const url = `${environment.apiURL}/suppliers/${id}`;
+    return this.http.get<SupplierModel>(url);
+  }
+
+  createSupplier(prod: SupplierModel): Observable<SupplierModel> {
+    return this.http.post<SupplierModel>(environment.apiURL+"/suppliers", prod, httpOptions);
+  }
+
+  updateSupplier(prod: SupplierModel): Observable<SupplierModel> {
+    return this.http.put<SupplierModel>(environment.apiURL+"/suppliers", prod, httpOptions);
+  }
+
+  deleteSupplier(id: number) {
+    const url = `${environment.apiURL}/suppliers/${id}`;
+    return this.http.delete(url, httpOptions);
+  }
+
+  listCategories(): Observable<CategoryModel[]> {
+    return this.http.get<CategoryModel[]>(environment.apiURL + "/cat");
+  }
 }
