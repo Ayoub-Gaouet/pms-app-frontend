@@ -21,6 +21,16 @@
       <input type="number"   [(ngModel)]= "newProduct.stock"
              name="stock" class="form-control">
     </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Categorie</label>
+
+      <select class="form-control form-control-lg" id="idCat" name="idCat" [(ngModel)]="newIdCat">
+        @for(cat of categories; track cat.id){
+          <option  [value]="cat.id">  {{cat.nom}}
+          </option>
+        }
+      </select>
+    </div>
 
     <div class="col-sm-4 col-md-4 col-lg-4">
       <label >Date création</label>

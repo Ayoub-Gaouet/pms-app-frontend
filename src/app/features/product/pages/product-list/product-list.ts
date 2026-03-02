@@ -14,18 +14,22 @@ import {RouterLink} from '@angular/router';
   styleUrl: './product-list.css',
 })
 export class ProductList implements OnInit {
-  products: ProductModel[]; //un tableau de chînes de caractères
-  constructor(private product: Product) {
-    this.products = product.listProducts();
+  products: ProductModel[] = [];
+  constructor(private product: Product) {}
+
+  ngOnInit(): void {
+    this.loadProducts();
+  }
+
+  loadProducts() {
+    this.products = this.product.listProducts();
   }
 
   deleteProduct(productModel: ProductModel) {
     let conf = confirm("Etes-vous sûr ?");
-    if (conf) this.product.deleteProduct(productModel);
+    if (conf) {
+      this.product.deleteProduct(productModel);
+      this.loadProducts();
+    }
   }
-
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
-
 }

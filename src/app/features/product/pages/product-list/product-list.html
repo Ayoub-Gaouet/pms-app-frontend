@@ -7,6 +7,7 @@
           <th>Id</th>
           <th>Nom</th>
           <th>Stock</th>
+          <th>Catégorie</th>
           <th>Date Création</th>
           <th>Date Modification</th>
           <th>Supprimer</th>
@@ -24,6 +25,11 @@
             <td>{{ productModel.id }}</td>
             <td>{{ productModel.name }}</td>
             <td>{{ productModel.stock }}</td>
+            @if(productModel.category){
+              <td>{{productModel.category.nom}}</td>  }
+            @else {
+              <td>'PAS DE CATEGORIE'</td>
+            }
             <td>{{ productModel.created_at | date:'dd/MM/yyyy' }}</td>
             <td>{{ productModel.updated_at | date:'dd/MM/yyyy' }}</td>
             <td><a class="btn btn-danger" (click)="deleteProduct(productModel)">Supprimer</a></td>
