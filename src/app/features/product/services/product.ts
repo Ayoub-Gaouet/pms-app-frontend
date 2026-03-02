@@ -1,95 +1,47 @@
 import {Injectable} from '@angular/core';
 import {ProductModel} from '../models/product.model';
 import {CategoryModel} from '../models/category.model';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {environment} from '../../../../environments/environment';
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
 
 @Injectable({
   providedIn: 'root',
 })
 export class Product {
-  products: ProductModel[]; //un tableau de Produit
-  product!: ProductModel;
-  categories: CategoryModel[];
+  products!: ProductModel[];
 
-  constructor() {
-    this.categories = [
-      { id: 1, nom: 'PC' },
-      { id: 2, nom: 'Imprimante' },
-      { id: 3, nom: 'Tablette' },
-    ];
-    this.products = [
-      {
-        id: 1,
-        name: "PC Asus",
-        stock: 3000.600,
-        created_at: new Date("01/14/2011"),
-        updated_at: new Date("01/14/2011"),
-        category: {id: 1, nom: 'PC'},
-      },
-      {
-        id: 2,
-        name: "Imprimante Epson",
-        stock: 450,
-        created_at: new Date("12/17/2010"),
-        updated_at: new Date("12/17/2010"),
-        category: {id: 2, nom: 'Imprimante'},
-
-      },
-      {
-        id: 3,
-        name: "Tablette Samsung",
-        stock: 900.123,
-        created_at: new Date("02/20/2020"),
-        updated_at: new Date("02/20/2020"),
-        category: {id: 3, nom: 'Tablette'},
-
-      },
-    ];
+  constructor(private http: HttpClient) {
   }
 
-  listProducts(): ProductModel[] {
-    return this.products;
+  listProducts(): Observable<ProductModel[]> {
+    return this.http.get<ProductModel[]>(environment.apiURL+"/products");
   }
 
-  viewProduct(id: number): ProductModel {
-    this.product = this.products.find(p => p.id == id)!;
-    return this.product;
+  viewProduct(id: number): Observable<ProductModel> {
+    const url = `${environment.apiURL}/products/${id}`;
+    return this.http.get<ProductModel>(url);
   }
 
-  createProduct(prod: ProductModel) {
-    this.products.push(prod);
+  createProduct(prod: ProductModel): Observable<ProductModel> {
+    return this.http.post<ProductModel>(environment.apiURL+"/products", prod, httpOptions);
   }
 
-  sortProducts() {
-    this.products = this.products.sort((n1, n2) => {
-      if (n1.id! > n2.id!) {
-        return 1;
-      }
-      if (n1.id! < n2.id!) {
-        return -1;
-      }
-      return 0;
-    });
+  updateProduct(prod: ProductModel): Observable<ProductModel> {
+    return this.http.put<ProductModel>(environment.apiURL+"/products", prod, httpOptions);
   }
 
-  updateProduct(p: ProductModel) {
-    // console.log(p);
-    this.deleteProduct(p);
-    this.createProduct(p);
-    this.sortProducts();
+  deleteProduct(id: number) {
+    const url = `${environment.apiURL}/products/${id}`;
+    return this.http.delete(url, httpOptions);
   }
 
-  deleteProduct(productModel: ProductModel) {
-    const index = this.products.indexOf(productModel, 0);
-    if (index > -1) {
-      this.products.splice(index, 1);
-    }
-  }
-
-  listCategories():CategoryModel[] {
-    return this.categories;
-  }
-  viewCategory(id:number): CategoryModel{
-    return this.categories.find(cat => cat.id  == id)!;
+  listCategories(): Observable<CategoryModel[]> {
+    return this.http.get<CategoryModel[]>(environment.apiURL + "/cat");
   }
 
 }

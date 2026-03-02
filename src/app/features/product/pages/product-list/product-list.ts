@@ -15,21 +15,27 @@ import {RouterLink} from '@angular/router';
 })
 export class ProductList implements OnInit {
   products: ProductModel[] = [];
-  constructor(private product: Product) {}
+
+  constructor(private product: Product) {
+  }
 
   ngOnInit(): void {
     this.loadProducts();
   }
 
   loadProducts() {
-    this.products = this.product.listProducts();
+    this.product.listProducts().subscribe(prods => {
+      console.log(prods);
+      this.products = prods;
+    });
   }
 
-  deleteProduct(productModel: ProductModel) {
+  deleteProduct(p: ProductModel) {
     let conf = confirm("Etes-vous sûr ?");
-    if (conf) {
-      this.product.deleteProduct(productModel);
-      this.loadProducts();
-    }
+    if (conf)
+      this.product.deleteProduct(p.id!).subscribe(() => {
+        console.log("produit supprimé");
+        this.loadProducts();
+      });
   }
 }

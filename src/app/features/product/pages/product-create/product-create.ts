@@ -3,6 +3,7 @@ import {FormsModule} from '@angular/forms';
 import {ProductModel} from '../../models/product.model';
 import {Product} from '../../services/product';
 import {CategoryModel} from '../../models/category.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-product-create',
@@ -12,22 +13,30 @@ import {CategoryModel} from '../../models/category.model';
 })
 export class ProductCreate implements OnInit {
   newProduct = new ProductModel();
-  message! : string;
-  categories! : CategoryModel[];
-  newIdCat! : number;
-  newCategory! : CategoryModel;
-  constructor(private product: Product) {
-  }
-  createProduct(){
-    // console.log(this.newProduct);
-    this.newCategory = this.product.viewCategory(this.newIdCat);
-    this.newProduct.category = this.newCategory;
-    this.product.createProduct(this.newProduct);
-    this.message = "Produit "+this.newProduct.name +" ajouté avec succès !"
+  message!: string;
+  categories!: CategoryModel[];
+  newIdCat!: number;
 
+  constructor(private product: Product, private router: Router
+  ) {
   }
+
+
+  createProduct() {
+    this.newProduct.category = this.categories.find(cat => cat.id == this.newIdCat)!;
+    this.product.createProduct(this.newProduct)
+      .subscribe(prod => {
+        console.log(prod);
+        this.router.navigate(['produits']);
+      });
+  }
+
+
   ngOnInit(): void {
-    this.categories = this.product.listCategories();
+    this.product.listCategories().subscribe(cats => {
+      this.categories = cats;
+      console.log(cats);
+    });
   }
 
 }

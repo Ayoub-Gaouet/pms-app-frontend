@@ -28,17 +28,24 @@ export class ProductEdit implements OnInit {
   }
 
   ngOnInit(): void {
-    this.categories = this.product.listCategories();
-    this.currentProduct = this.product.viewProduct(this.activatedRoute.snapshot.params['id'])
-    this.updatedCatId=this.currentProduct.category.id;
-
+    this.product.listCategories().subscribe((cats) => {
+      this.categories = cats;
+      console.log(cats);
+    });
+    this.product
+      .viewProduct(this.activatedRoute.snapshot.params['id'])
+      .subscribe((prod) => {
+        this.currentProduct = prod;
+        this.updatedCatId = this.currentProduct.category.id;
+      });
   }
 
-  updateProduct() { //console.log(this.currentProduit);
-    this.currentProduct.category=this.product.viewCategory(this.updatedCatId);
-    this.product.updateProduct(this.currentProduct);
-    this.router.navigate(['products']);
+  updateProduct() {
+    this.currentProduct.category = this.categories.find(
+      (cat) => cat.id == this.updatedCatId
+    )!;
+    this.product.updateProduct(this.currentProduct).subscribe(() => {
+      this.router.navigate(['products']);
+    });
   }
-
-
 }
