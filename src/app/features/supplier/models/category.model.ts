@@ -1,6 +1,6 @@
 export class CategoryModel {
     id!: number;
-    nom!: string;
+    name!: string;
     created_at!: Date;
     updated_at!: Date;
 }

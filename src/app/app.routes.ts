@@ -2,11 +2,19 @@ import {Routes} from '@angular/router';
 import {ProductList} from './features/product/pages/product-list/product-list';
 import {ProductCreate} from './features/product/pages/product-create/product-create';
 import {ProductEdit} from './features/product/pages/product-edit/product-edit';
+import {SupplierList} from './features/supplier/pages/supplier-list/supplier-list';
+import {SupplierCreate} from './features/supplier/pages/supplier-create/supplier-create';
+import {SupplierEdit} from './features/supplier/pages/supplier-edit/supplier-edit';
 
 export const routes: Routes = [
+  //Gestion des produits
   {path: "products", component: ProductList},
   {path: "product-create", component: ProductCreate},
   {path: "", redirectTo: "products", pathMatch: "full"},
-  {path: "updateProduct/:id",  component: ProductEdit},
+  {path: "updateProduct/:id", component: ProductEdit},
 
+  //Gestion des fournisseurs
+  {path: "suppliers", component: SupplierList},
+  {path: "supplier-create", component: SupplierCreate},
+  {path: "updateSupplier/:id", component: SupplierEdit},
 ];

@@ -27,12 +27,12 @@ export class Supplier {
     return this.http.get<SupplierModel>(url);
   }
 
-  createSupplier(prod: SupplierModel): Observable<SupplierModel> {
+  createSupplier(prod: Partial<SupplierModel> | any): Observable<SupplierModel> {
     return this.http.post<SupplierModel>(environment.apiURL+"/suppliers", prod, httpOptions);
   }
 
-  updateSupplier(prod: SupplierModel): Observable<SupplierModel> {
-    return this.http.put<SupplierModel>(environment.apiURL+"/suppliers", prod, httpOptions);
+  updateSupplier(id: number, supplierRequest: any): Observable<SupplierModel> {
+    return this.http.put<SupplierModel>(`${environment.apiURL}/suppliers/${id}`, supplierRequest, httpOptions);
   }
 
   deleteSupplier(id: number) {
@@ -41,6 +41,6 @@ export class Supplier {
   }
 
   listCategories(): Observable<CategoryModel[]> {
-    return this.http.get<CategoryModel[]>(environment.apiURL + "/cat");
+    return this.http.get<CategoryModel[]>(environment.apiURL + "/categories");
   }
 }

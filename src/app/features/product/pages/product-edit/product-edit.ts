@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, signal} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProductModel} from '../../models/product.model';
 import {Product} from '../../services/product';
@@ -18,7 +18,7 @@ import {CategoryModel} from '../../models/category.model';
 export class ProductEdit implements OnInit {
   currentProduct = new ProductModel();
 
-  categories! : CategoryModel[];
+  categories = signal<CategoryModel[]>([]);
   updatedCatId! : number;
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -29,7 +29,7 @@ export class ProductEdit implements OnInit {
 
   ngOnInit(): void {
     this.product.listCategories().subscribe((cats) => {
-      this.categories = cats;
+      this.categories.set(cats);
       console.log(cats);
     });
     this.product
@@ -41,7 +41,7 @@ export class ProductEdit implements OnInit {
   }
 
   updateProduct() {
-    this.currentProduct.category = this.categories.find(
+    this.currentProduct.category = this.categories().find(
       (cat) => cat.id == this.updatedCatId
     )!;
     this.product.updateProduct(this.currentProduct).subscribe(() => {

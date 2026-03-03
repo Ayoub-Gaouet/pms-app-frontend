@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, signal} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {ProductModel} from '../../models/product.model';
 import {Product} from '../../services/product';
@@ -14,7 +14,7 @@ import {Router} from '@angular/router';
 export class ProductCreate implements OnInit {
   newProduct = new ProductModel();
   message!: string;
-  categories!: CategoryModel[];
+  categories = signal<CategoryModel[]>([]);
   newIdCat!: number;
 
   constructor(private product: Product, private router: Router
@@ -23,7 +23,7 @@ export class ProductCreate implements OnInit {
 
 
   createProduct() {
-    this.newProduct.category = this.categories.find(cat => cat.id == this.newIdCat)!;
+    this.newProduct.category = this.categories().find(cat => cat.id == this.newIdCat)!;
     this.product.createProduct(this.newProduct)
       .subscribe(prod => {
         console.log(prod);
@@ -34,7 +34,7 @@ export class ProductCreate implements OnInit {
 
   ngOnInit(): void {
     this.product.listCategories().subscribe(cats => {
-      this.categories = cats;
+      this.categories.set(cats);
       console.log(cats);
     });
   }

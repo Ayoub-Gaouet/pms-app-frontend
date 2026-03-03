@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, signal} from '@angular/core';
 import {ProductModel} from '../../models/product.model';
 import {DatePipe} from '@angular/common';
 import {Product} from '../../services/product';
@@ -14,7 +14,7 @@ import {RouterLink} from '@angular/router';
   styleUrl: './product-list.css',
 })
 export class ProductList implements OnInit {
-  products: ProductModel[] = [];
+  products = signal<ProductModel[]>([]);
 
   constructor(private product: Product) {
   }
@@ -26,7 +26,7 @@ export class ProductList implements OnInit {
   loadProducts() {
     this.product.listProducts().subscribe(prods => {
       console.log(prods);
-      this.products = prods;
+      this.products.set(prods);
     });
   }
 

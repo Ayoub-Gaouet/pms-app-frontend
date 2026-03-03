@@ -1,4 +1,9 @@
 <div class="container">
+  @if (successMessage()) {
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ successMessage() }}
+    </div>
+  }
   <div class="card shadow mb-4">
     <div class="card-body">
       <table class="table table-striped">
@@ -15,7 +20,7 @@
           <th>Supprimer</th>
           <th>Modifier</th>
         </tr>
-        @for (supplierModel of suppliers; track supplierModel.id; let index = $index; let nbr = $count; let first = $first) {
+        @for (supplierModel of suppliers(); track supplierModel.id; let index = $index; let nbr = $count; let first = $first) {
           @if (first) {
             <h1>Nombre : {{ nbr }}</h1>
           }
@@ -25,11 +30,11 @@
             <td>{{ index }}</td>
             <td>{{ supplierModel.id }}</td>
             <td>{{ supplierModel.name }}</td>
-            <td>{{ supplierModel.taxNumber }}</td>
-            <td>{{ supplierModel.telephoneNumber }}</td>
+            <td>{{ supplierModel.tax_number }}</td>
+            <td>{{ supplierModel.telephone_number }}</td>
             <td>{{ supplierModel.address }}</td>
-            @if(supplierModel.category){
-              <td>{{supplierModel.category.nom}}</td>  }
+            @if(supplierModel.categoryName){
+              <td>{{supplierModel.categoryName}}</td>  }
             @else {
               <td>'PAS DE CATEGORIE'</td>
             }

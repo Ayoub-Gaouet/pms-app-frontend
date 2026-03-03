@@ -13,7 +13,7 @@
           <th>Supprimer</th>
           <th>Modifier</th>
         </tr>
-        @for (productModel of products; track productModel.id; let index = $index; let nbr = $count; let first = $first) {
+        @for (productModel of products(); track productModel.id; let index = $index; let nbr = $count; let first = $first) {
           @if (first) {
             <h1>Nombre : {{ nbr }}</h1>
           }
