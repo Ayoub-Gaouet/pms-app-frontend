@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ProductModel} from '../models/product.model';
 import {CategoryModel} from '../models/category.model';
+import {SupplierModel} from '../../supplier/models/supplier.model';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../../../environments/environment';
@@ -32,7 +33,7 @@ export class Product {
   }
 
   updateProduct(prod: ProductModel): Observable<ProductModel> {
-    return this.http.put<ProductModel>(environment.apiURL+"/products", prod, httpOptions);
+    return this.http.put<ProductModel>(`${environment.apiURL}/products/${prod.id}`, prod, httpOptions);
   }
 
   deleteProduct(id: number) {
@@ -42,6 +43,10 @@ export class Product {
 
   listCategories(): Observable<CategoryModel[]> {
     return this.http.get<CategoryModel[]>(environment.apiURL + "/cat");
+  }
+
+  listSuppliers(): Observable<SupplierModel[]> {
+    return this.http.get<SupplierModel[]>(environment.apiURL + "/suppliers");
   }
 
 }

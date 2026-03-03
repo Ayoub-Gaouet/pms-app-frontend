@@ -1,58 +1,96 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Production Management System</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" routerLink="/products">
+      <i class="bi bi-gear-wide-connected fs-4 text-primary"></i>
+      <span>PMS</span>
+      <span class="badge bg-primary bg-opacity-25 text-white fs-6 fw-normal d-none d-md-inline">Production Management System</span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-1">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/products" routerLinkActive="active">Home</a>
+          <a class="nav-link d-flex align-items-center gap-1" routerLink="/products" routerLinkActive="active">
+            <i class="bi bi-house-door"></i> Accueil
+          </a>
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+          <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
-            Produits
+            <i class="bi bi-box-seam"></i> Produits
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" routerLink="/product-create" routerLinkActive="active">Ajouter</a></li>
-            <li><a class="dropdown-item" routerLink="/products" routerLinkActive="active">Lister</a></li>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/products" routerLinkActive="active">
+                <i class="bi bi-list-ul"></i> Liste des produits
+              </a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/product-create" routerLinkActive="active">
+                <i class="bi bi-plus-circle"></i> Ajouter un produit
+              </a>
+            </li>
           </ul>
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSupplier" role="button" data-bs-toggle="dropdown"
+          <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" href="#" id="navbarDropdownSupplier" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
-            Fournisseurs
+            <i class="bi bi-truck"></i> Fournisseurs
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownSupplier">
-            <li><a class="dropdown-item" routerLink="/supplier-create" routerLinkActive="active">Ajouter</a></li>
-            <li><a class="dropdown-item" routerLink="/suppliers" routerLinkActive="active">Lister</a></li>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownSupplier">
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/suppliers" routerLinkActive="active">
+                <i class="bi bi-list-ul"></i> Liste des fournisseurs
+              </a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/supplier-create" routerLinkActive="active">
+                <i class="bi bi-plus-circle"></i> Ajouter un fournisseur
+              </a>
+            </li>
           </ul>
         </li>
       </ul>
 
-
-      <ul class="navbar-nav ms-auto m-2">
+      <ul class="navbar-nav ms-auto">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+          <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" id="navbarDropdownUser" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
-            [username]
+            <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+              <i class="bi bi-person-fill text-white"></i>
+            </div>
+            <span class="d-none d-md-inline">Utilisateur</span>
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Login</a></li>
-            <li><a class="dropdown-item" href="#">Logout</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
+          <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdownUser">
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                <i class="bi bi-person-circle"></i> Profil
+              </a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                <i class="bi bi-box-arrow-in-right"></i> Connexion
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2 text-danger" href="#">
+                <i class="bi bi-box-arrow-right"></i> Déconnexion
+              </a>
+            </li>
           </ul>
         </li>
       </ul>
-
-
-
     </div>
   </div>
 </nav>
 
-<router-outlet />
+<main class="bg-light min-vh-100">
+  <router-outlet />
+</main>

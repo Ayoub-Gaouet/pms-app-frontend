@@ -3,6 +3,7 @@ import {FormsModule} from '@angular/forms';
 import {ProductModel} from '../../models/product.model';
 import {Product} from '../../services/product';
 import {CategoryModel} from '../../models/category.model';
+import {SupplierModel} from '../../../supplier/models/supplier.model';
 import {Router} from '@angular/router';
 
 @Component({
@@ -15,7 +16,9 @@ export class ProductCreate implements OnInit {
   newProduct = new ProductModel();
   message!: string;
   categories = signal<CategoryModel[]>([]);
+  suppliers = signal<SupplierModel[]>([]);
   newIdCat!: number;
+  newIdSupplier!: number;
 
   constructor(private product: Product, private router: Router
   ) {
@@ -23,11 +26,12 @@ export class ProductCreate implements OnInit {
 
 
   createProduct() {
-    this.newProduct.category = this.categories().find(cat => cat.id == this.newIdCat)!;
+    this.newProduct.categoryId = this.newIdCat;
+    this.newProduct.supplierId = this.newIdSupplier;
     this.product.createProduct(this.newProduct)
       .subscribe(prod => {
         console.log(prod);
-        this.router.navigate(['produits']);
+        this.router.navigate(['products'], { queryParams: { created: 'true' } });
       });
   }
 
@@ -35,7 +39,9 @@ export class ProductCreate implements OnInit {
   ngOnInit(): void {
     this.product.listCategories().subscribe(cats => {
       this.categories.set(cats);
-      console.log(cats);
+    });
+    this.product.listSuppliers().subscribe(suppliers => {
+      this.suppliers.set(suppliers);
     });
   }
 

@@ -4,12 +4,6 @@
   </div>
   <form >
 
-    <div class="col-sm-2 col-md-2 col-lg-2">
-      <label >ID  Produit</label>
-      <input   type="text"  [(ngModel)]="newProduct.id"
-               name="id" class="form-control">
-    </div>
-
     <div class="col-sm-4 col-md-4 col-lg-4" >
       <label >Nom Produit</label>
       <input  type="text"[(ngModel)]= "newProduct.name"
@@ -33,14 +27,14 @@
     </div>
 
     <div class="col-sm-4 col-md-4 col-lg-4">
-      <label >Date création</label>
-      <input type="date"  [(ngModel)]= "newProduct.created_at"
-             name="dateCreation" class="form-control">
-    </div>
-    <div class="col-sm-4 col-md-4 col-lg-4">
-      <label >Date modification</label>
-      <input type="date"  [(ngModel)]= "newProduct.updated_at"
-             name="dateModification" class="form-control">
+      <label>Fournisseur</label>
+
+      <select class="form-control form-control-lg" id="idSupplier" name="idSupplier" [(ngModel)]="newIdSupplier">
+        @for(supplier of suppliers(); track supplier.id){
+          <option [ngValue]="supplier.id">  {{supplier.name}}
+          </option>
+        }
+      </select>
     </div>
 
 
