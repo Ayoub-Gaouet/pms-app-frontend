@@ -8,21 +8,31 @@ import {SupplierEdit} from './features/supplier/pages/supplier-edit/supplier-edi
 import {ProductCategorySearch} from './features/product/components/product-category-search/product-category-search';
 import {ProductNameSearch} from './features/product/components/product-name-search/product-name-search';
 import {CategoryList} from './features/product/pages/category-list/category-list';
+import {Login} from './features/auth/pages/login/login';
+import {Forbidden} from './core/pages/forbidden/forbidden';
+import {authGuard} from './core/guards/auth-guard';
+import {adminGuard} from './core/guards/admin-guard';
 
 export const routes: Routes = [
   //Gestion des produits
-  {path: "products", component: ProductList},
-  {path: "product-create", component: ProductCreate},
+  {path: "products", component: ProductList, canActivate: [authGuard]},
+  {path: "product-create", component: ProductCreate, canActivate: [authGuard, adminGuard]},
   {path: "", redirectTo: "products", pathMatch: "full"},
-  {path: "updateProduct/:id", component: ProductEdit},
-  {path: 'products-category-search', component: ProductCategorySearch},
-  {path: 'products-name-search', component: ProductNameSearch},
+  {path: "updateProduct/:id", component: ProductEdit, canActivate: [authGuard, adminGuard]},
+  {path: 'products-category-search', component: ProductCategorySearch, canActivate: [authGuard]},
+  {path: 'products-name-search', component: ProductNameSearch, canActivate: [authGuard]},
 
   //Gestion des catégories
-  {path: "categories", component: CategoryList},
+  {path: "categories", component: CategoryList, canActivate: [authGuard]},
 
   //Gestion des fournisseurs
-  {path: "suppliers", component: SupplierList},
-  {path: "supplier-create", component: SupplierCreate},
-  {path: "updateSupplier/:id", component: SupplierEdit},
+  {path: "suppliers", component: SupplierList, canActivate: [authGuard]},
+  {path: "supplier-create", component: SupplierCreate, canActivate: [authGuard, adminGuard]},
+  {path: "updateSupplier/:id", component: SupplierEdit, canActivate: [authGuard, adminGuard]},
+
+  //Login
+  {path: 'login', component: Login},
+
+  //Forbidden
+  {path: 'forbidden', component: Forbidden},
 ];

@@ -3,6 +3,7 @@ import {ProductModel} from '../../models/product.model';
 import {DatePipe} from '@angular/common';
 import {Product} from '../../services/product';
 import {ActivatedRoute, RouterLink} from '@angular/router';
+import {Auth} from '../../../auth/services/auth';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -21,7 +22,7 @@ export class ProductList implements OnInit {
   inStockCount = computed(() => this.products().filter(p => (p.stock ?? 0) > 0).length);
   outOfStockCount = computed(() => this.products().filter(p => (p.stock ?? 0) === 0).length);
 
-  constructor(private product: Product, private route: ActivatedRoute) {
+  constructor(private product: Product, private route: ActivatedRoute, public authService: Auth) {
   }
 
   ngOnInit(): void {

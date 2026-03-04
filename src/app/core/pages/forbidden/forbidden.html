@@ -1,0 +1,32 @@
+<div class="min-vh-100 d-flex align-items-center justify-content-center bg-light">
+  <div class="text-center px-4">
+
+    <!-- Icône -->
+    <div class="rounded-circle bg-danger bg-opacity-10 d-inline-flex align-items-center justify-content-center p-4 mb-4">
+      <i class="bi bi-shield-x text-danger" style="font-size: 3rem;"></i>
+    </div>
+
+    <!-- Code erreur -->
+    <h1 class="fw-bold text-danger mb-2" style="font-size: 5rem;">403</h1>
+
+    <!-- Message principal -->
+    <h2 class="fw-bold text-dark mb-3">Accès Refusé</h2>
+    <p class="text-muted fs-5 mb-1">Vous n'êtes pas autorisé à accéder à cette page.</p>
+    <p class="text-muted mb-4">Seuls les administrateurs peuvent effectuer cette action.</p>
+
+    <!-- Actions -->
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+      <button (click)="goHome()" class="btn btn-primary d-flex align-items-center gap-2 shadow-sm">
+        <i class="bi bi-house-door"></i> Retour à l'accueil
+      </button>
+      <button (click)="goLogin()" class="btn btn-outline-secondary d-flex align-items-center gap-2">
+        @if (authService.isloggedIn) {
+          <i class="bi bi-box-arrow-right"></i> Se déconnecter
+        }
+      </button>
+    </div>
+
+  </div>
+</div>
+
+

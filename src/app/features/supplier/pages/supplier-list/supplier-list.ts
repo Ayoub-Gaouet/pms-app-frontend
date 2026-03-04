@@ -3,6 +3,7 @@ import {SupplierModel} from '../../models/supplier.model';
 import { Supplier } from '../../services/supplier';
 import {DatePipe} from '@angular/common';
 import {ActivatedRoute, RouterLink} from '@angular/router';
+import {Auth} from '../../../auth/services/auth';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -20,7 +21,7 @@ export class SupplierList implements OnInit{
 
   withCategoryCount = computed(() => this.suppliers().filter(s => s.categoryName).length);
 
-  constructor(private supplier: Supplier, private route: ActivatedRoute) {
+  constructor(private supplier: Supplier, private route: ActivatedRoute, public authService: Auth) {
   }
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
