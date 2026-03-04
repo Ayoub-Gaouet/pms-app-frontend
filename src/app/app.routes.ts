@@ -7,6 +7,7 @@ import {SupplierCreate} from './features/supplier/pages/supplier-create/supplier
 import {SupplierEdit} from './features/supplier/pages/supplier-edit/supplier-edit';
 import {ProductCategorySearch} from './features/product/components/product-category-search/product-category-search';
 import {ProductNameSearch} from './features/product/components/product-name-search/product-name-search';
+import {CategoryList} from './features/product/pages/category-list/category-list';
 
 export const routes: Routes = [
   //Gestion des produits
@@ -16,6 +17,9 @@ export const routes: Routes = [
   {path: "updateProduct/:id", component: ProductEdit},
   {path: 'products-category-search', component: ProductCategorySearch},
   {path: 'products-name-search', component: ProductNameSearch},
+
+  //Gestion des catégories
+  {path: "categories", component: CategoryList},
 
   //Gestion des fournisseurs
   {path: "suppliers", component: SupplierList},

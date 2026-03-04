@@ -45,6 +45,14 @@ export class Product {
     return this.http.get<CategoryModel[]>(environment.apiURL + "/cat");
   }
 
+  createCategory(cat: CategoryModel): Observable<CategoryModel> {
+    return this.http.post<CategoryModel>(environment.apiURL + "/cat", cat, httpOptions);
+  }
+
+  updateCategory(cat: CategoryModel): Observable<CategoryModel> {
+    return this.http.put<CategoryModel>(`${environment.apiURL}/cat/${cat.id}`, cat, httpOptions);
+  }
+
   listSuppliers(): Observable<SupplierModel[]> {
     return this.http.get<SupplierModel[]>(environment.apiURL + "/suppliers");
   }
