@@ -5,8 +5,9 @@
       <span>PMS</span>
       <span class="badge bg-primary bg-opacity-25 text-white fs-6 fw-normal d-none d-md-inline">Production Management System</span>
     </a>
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -18,8 +19,9 @@
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
+          <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" href="#" id="navbarDropdown" role="button"
+             data-bs-toggle="dropdown"
+             aria-expanded="false">
             <i class="bi bi-box-seam"></i> Produits
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
@@ -28,16 +30,31 @@
                 <i class="bi bi-list-ul"></i> Liste des produits
               </a>
             </li>
-            <li><hr class="dropdown-divider"></li>
             <li>
-              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/product-create" routerLinkActive="active">
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/product-create"
+                 routerLinkActive="active">
                 <i class="bi bi-plus-circle"></i> Ajouter un produit
               </a>
             </li>
-            <li><hr class="dropdown-divider"></li>
             <li>
-              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/products-category-search" routerLinkActive="active">
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/products-category-search"
+                 routerLinkActive="active">
                 <i class="bi bi-search"></i> Recherche par catégorie
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/products-name-search"
+                 routerLinkActive="active">
+                <i class="bi bi-search"></i> Recherche par nom
               </a>
             </li>
 
@@ -45,19 +62,24 @@
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" href="#" id="navbarDropdownSupplier" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
+          <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" href="#" id="navbarDropdownSupplier"
+             role="button" data-bs-toggle="dropdown"
+             aria-expanded="false">
             <i class="bi bi-truck"></i> Fournisseurs
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownSupplier">
             <li>
-              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/suppliers" routerLinkActive="active">
+              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/suppliers"
+                 routerLinkActive="active">
                 <i class="bi bi-list-ul"></i> Liste des fournisseurs
               </a>
             </li>
-            <li><hr class="dropdown-divider"></li>
             <li>
-              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/supplier-create" routerLinkActive="active">
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/supplier-create"
+                 routerLinkActive="active">
                 <i class="bi bi-plus-circle"></i> Ajouter un fournisseur
               </a>
             </li>
@@ -67,9 +89,11 @@
 
       <ul class="navbar-nav ms-auto">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" id="navbarDropdownUser" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+          <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" id="navbarDropdownUser"
+             role="button" data-bs-toggle="dropdown"
+             aria-expanded="false">
+            <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center"
+                 style="width: 32px; height: 32px;">
               <i class="bi bi-person-fill text-white"></i>
             </div>
             <span class="d-none d-md-inline">Utilisateur</span>
@@ -80,7 +104,9 @@
                 <i class="bi bi-person-circle"></i> Profil
               </a>
             </li>
-            <li><hr class="dropdown-divider"></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
             <li>
               <a class="dropdown-item d-flex align-items-center gap-2" href="#">
                 <i class="bi bi-box-arrow-in-right"></i> Connexion
@@ -99,5 +125,5 @@
 </nav>
 
 <main class="bg-light min-vh-100">
-  <router-outlet />
+  <router-outlet/>
 </main>

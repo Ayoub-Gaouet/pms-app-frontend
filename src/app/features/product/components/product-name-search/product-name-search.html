@@ -3,27 +3,35 @@
   <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
       <h2 class="fw-bold text-dark mb-1">
-        <i class="bi bi-box-seam me-2 text-primary"></i>Recherche par Catégorie
+        <i class="bi bi-search me-2 text-primary"></i>Recherche par Nom
       </h2>
-      <p class="text-muted mb-0">Rechercher des produits par catégorie</p>
+      <p class="text-muted mb-0">Rechercher des produits par leur nom</p>
     </div>
   </div>
 
-  <!-- Search by Category -->
+  <!-- Search by Name -->
   <div class="card border-0 shadow-sm mb-4">
     <div class="card-body">
       <div class="row align-items-end g-3">
-        <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
-          <label for="idCat" class="form-label fw-semibold">
-            <i class="bi bi-tag me-1"></i>Catégories
+        <div class="col-sm-6 col-md-5 col-lg-4 mb-2">
+          <label for="nomProduit" class="form-label fw-semibold">
+            <i class="bi bi-box-seam me-1"></i>Nom Produit
           </label>
-          <select class="form-control form-control-lg" id="idCat" name="idCat"
-                  [(ngModel)]="IdCategorie" (ngModelChange)="onChange($event)">
-            <option [ngValue]="null">-- Toutes les catégories --</option>
-            @for (cat of categories(); track cat.id) {
-              <option [ngValue]="cat.id">{{ cat.nom }}</option>
-            }
-          </select>
+          <div class="input-group input-group-lg">
+            <input
+              type="text"
+              class="form-control"
+              id="nomProduit"
+              name="nomProduit"
+              [(ngModel)]="productName"
+              placeholder="Entrez un nom de produit..."
+              (keyup.enter)="searchProds()"
+            />
+            <button class="btn btn-primary" type="button" (click)="searchProds()">
+              <i class="bi bi-search me-1"></i>Rechercher
+            </button>
+          </div>
+          <small class="text-muted">Laissez vide pour afficher tous les produits</small>
         </div>
       </div>
     </div>
@@ -58,7 +66,7 @@
               <tr>
                 <td colspan="7" class="text-center text-muted py-5">
                   <i class="bi bi-inbox fs-1 d-block mb-2"></i>
-                  Aucun produit trouvé pour cette catégorie
+                  Aucun produit trouvé
                 </td>
               </tr>
             }

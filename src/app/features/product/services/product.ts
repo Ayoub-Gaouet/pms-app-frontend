@@ -53,4 +53,9 @@ export class Product {
     const url = `${environment.apiURL}/products/category/${idCat}`;
     return this.http.get<ProductModel[]>(url);
   }
+
+  searchByName(name: string): Observable<ProductModel[]> {
+    const url = `${environment.apiURL}/products/prodsByName/${encodeURIComponent(name)}`;
+    return this.http.get<ProductModel[]>(url);
+  }
 }
