@@ -1,0 +1,126 @@
+<div class="container-fluid py-4">
+  <!-- Page Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold text-dark mb-1">
+        <i class="bi bi-box-seam me-2 text-primary"></i>Recherche par Catégorie
+      </h2>
+      <p class="text-muted mb-0">Rechercher des produits par catégorie</p>
+    </div>
+  </div>
+
+  <!-- Search by Category -->
+  <div class="card border-0 shadow-sm mb-4">
+    <div class="card-body">
+      <div class="row align-items-end g-3">
+        <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+          <label for="idCat" class="form-label fw-semibold">
+            <i class="bi bi-tag me-1"></i>Catégories
+          </label>
+          <select class="form-control form-control-lg" id="idCat" name="idCat"
+                  [(ngModel)]="IdCategorie" (ngModelChange)="onChange($event)">
+            <option [ngValue]="null" disabled>-- Choisir une catégorie --</option>
+            @for (cat of categories(); track cat.id) {
+              <option [ngValue]="cat.id">{{ cat.nom }}</option>
+            }
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table Card -->
+  <div class="card border-0 shadow-sm">
+    <div class="card-header bg-white border-bottom py-3">
+      <div class="d-flex justify-content-between align-items-center">
+        <h5 class="mb-0 fw-semibold">
+          <i class="bi bi-table me-2 text-muted"></i>Liste des Produits
+        </h5>
+        <span class="badge bg-primary rounded-pill">{{ products().length }} produit(s)</span>
+      </div>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="table-light">
+            <tr>
+              <th class="ps-4">#</th>
+              <th>Nom</th>
+              <th>Stock</th>
+              <th>Catégorie</th>
+              <th>Fournisseur</th>
+              <th>Créé le</th>
+              <th>Modifié le</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if (products().length === 0) {
+              <tr>
+                <td colspan="7" class="text-center text-muted py-5">
+                  <i class="bi bi-inbox fs-1 d-block mb-2"></i>
+                  @if (!IdCategorie) {
+                    Sélectionnez une catégorie pour afficher les produits
+                  } @else {
+                    Aucun produit trouvé pour cette catégorie
+                  }
+                </td>
+              </tr>
+            }
+            @for (productModel of products(); track productModel.id; let index = $index) {
+              <tr>
+                <td class="ps-4 fw-semibold text-muted">{{ index + 1 }}</td>
+                <td>
+                  <div class="fw-semibold">{{ productModel.name }}</div>
+                  <small class="text-muted">ID: {{ productModel.id }}</small>
+                </td>
+                <td>
+                  @if (productModel.stock! > 10) {
+                    <span class="badge bg-success-subtle text-success px-3 py-2">
+                      <i class="bi bi-arrow-up-short"></i> {{ productModel.stock }}
+                    </span>
+                  } @else if (productModel.stock! > 0) {
+                    <span class="badge bg-warning-subtle text-warning px-3 py-2">
+                      <i class="bi bi-dash"></i> {{ productModel.stock }}
+                    </span>
+                  } @else {
+                    <span class="badge bg-danger-subtle text-danger px-3 py-2">
+                      <i class="bi bi-arrow-down-short"></i> {{ productModel.stock }}
+                    </span>
+                  }
+                </td>
+                <td>
+                  @if (productModel.categoryName) {
+                    <span class="badge bg-info-subtle text-info px-3 py-2">
+                      <i class="bi bi-tag me-1"></i>{{ productModel.categoryName }}
+                    </span>
+                  } @else {
+                    <span class="badge bg-secondary-subtle text-secondary px-3 py-2">Non assignée</span>
+                  }
+                </td>
+                <td>
+                  @if (productModel.supplierName) {
+                    <span class="badge bg-primary-subtle text-primary px-3 py-2">
+                      <i class="bi bi-truck me-1"></i>{{ productModel.supplierName }}
+                    </span>
+                  } @else {
+                    <span class="badge bg-secondary-subtle text-secondary px-3 py-2">Non assigné</span>
+                  }
+                </td>
+                <td>
+                  <small class="text-muted">
+                    <i class="bi bi-calendar3 me-1"></i>{{ productModel.created_at | date:'dd/MM/yyyy' }}
+                  </small>
+                </td>
+                <td>
+                  <small class="text-muted">
+                    <i class="bi bi-clock me-1"></i>{{ productModel.updated_at | date:'dd/MM/yyyy' }}
+                  </small>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

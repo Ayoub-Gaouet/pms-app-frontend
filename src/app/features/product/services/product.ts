@@ -20,7 +20,7 @@ export class Product {
   }
 
   listProducts(): Observable<ProductModel[]> {
-    return this.http.get<ProductModel[]>(environment.apiURL+"/products");
+    return this.http.get<ProductModel[]>(environment.apiURL + "/products");
   }
 
   viewProduct(id: number): Observable<ProductModel> {
@@ -29,7 +29,7 @@ export class Product {
   }
 
   createProduct(prod: ProductModel): Observable<ProductModel> {
-    return this.http.post<ProductModel>(environment.apiURL+"/products", prod, httpOptions);
+    return this.http.post<ProductModel>(environment.apiURL + "/products", prod, httpOptions);
   }
 
   updateProduct(prod: ProductModel): Observable<ProductModel> {
@@ -49,4 +49,8 @@ export class Product {
     return this.http.get<SupplierModel[]>(environment.apiURL + "/suppliers");
   }
 
+  searchByCategory(idCat: number): Observable<ProductModel[]> {
+    const url = `${environment.apiURL}/products/category/${idCat}`;
+    return this.http.get<ProductModel[]>(url);
+  }
 }
