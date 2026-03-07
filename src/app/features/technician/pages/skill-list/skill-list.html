@@ -1,0 +1,97 @@
+<div class="container-fluid py-4">
+  <!-- Success Alert -->
+  @if (successMessage()) {
+    <div class="alert alert-success alert-dismissible fade show d-flex align-items-center shadow-sm" role="alert">
+      <i class="bi bi-check-circle-fill me-2 fs-5"></i>
+      <span>{{ successMessage() }}</span>
+    </div>
+  }
+
+  <!-- Page Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold text-dark mb-1">
+        <i class="bi bi-tools me-2 text-primary"></i>Gestion des Compétences
+      </h2>
+      <p class="text-muted mb-0">Liste de toutes les compétences enregistrées</p>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <!-- Formulaire Ajouter / Modifier -->
+    <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+      <app-skill-update
+        [skill]="updatedSkill()"
+        [isAdd]="isAdd()"
+        (skillUpdated)="skillUpdated($event)">
+      </app-skill-update>
+    </div>
+
+    <!-- Table des compétences -->
+    <div class="col-sm-8 col-md-8 col-lg-8">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-white border-bottom py-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 fw-semibold">
+              <i class="bi bi-table me-2 text-muted"></i>Liste des Compétences
+            </h5>
+            <span class="badge bg-primary rounded-pill">{{ skills().length }} compétence(s)</span>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th class="ps-4">#</th>
+                  <th>Nom de la compétence</th>
+                  <th>Date création</th>
+                  <th>Date modification</th>
+                  <th class="text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (skill of skills(); track skill.id; let i = $index) {
+                  <tr>
+                    <td class="ps-4 fw-semibold text-muted">{{ i + 1 }}</td>
+                    <td>
+                      <div class="fw-semibold">{{ skill.name }}</div>
+                      <small class="text-muted">ID: {{ skill.id }}</small>
+                    </td>
+                    <td>
+                      <small class="text-muted">
+                        <i class="bi bi-calendar3 me-1"></i>{{ skill.created_at | date:'dd/MM/yyyy' }}
+                      </small>
+                    </td>
+                    <td>
+                      <small class="text-muted">
+                        <i class="bi bi-clock me-1"></i>{{ skill.updated_at | date:'dd/MM/yyyy' }}
+                      </small>
+                    </td>
+                    <td class="text-center">
+                      <div class="btn-group btn-group-sm" role="group">
+                        <a class="btn btn-outline-primary" (click)="editSkill(skill)" title="Modifier">
+                          <i class="bi bi-pencil-square"></i>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                } @empty {
+                  <tr>
+                    <td colspan="5" class="text-center py-5">
+                      <div class="d-flex flex-column align-items-center">
+                        <i class="bi bi-inbox text-muted" style="font-size: 3rem;"></i>
+                        <h5 class="text-muted mt-3">Aucune compétence trouvée</h5>
+                        <p class="text-muted">Commencez par ajouter votre première compétence.</p>
+                      </div>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

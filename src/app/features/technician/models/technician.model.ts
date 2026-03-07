@@ -1,10 +1,12 @@
-import {SkillModel} from './skill.model';
+import { SkillModel } from './skill.model';
 
-export class TechnicianModel{
+export class TechnicianModel {
   id?: number;
   nom?: string;
-  skill?: SkillModel;
+  skillId?: number;
+  skillName?: string;
+  machineAssigneeId?: number;
+  machineAssigneeNom?: string;
   created_at?: Date;
   updated_at?: Date;
-
 }
