@@ -1,0 +1,108 @@
+<div class="container-fluid py-4">
+  <!-- Page Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold text-dark mb-1">
+        <i class="bi bi-search me-2 text-primary"></i>Recherche de fournisseurs par nom
+      </h2>
+      <p class="text-muted mb-0">Rechercher des fournisseurs par leur nom</p>
+    </div>
+  </div>
+  <!-- Search by Name -->
+  <div class="card border-0 shadow-sm mb-4">
+    <div class="card-body">
+      <div class="row align-items-end g-3">
+        <div class="col-sm-6 col-md-5 col-lg-4 mb-2">
+          <label for="nomFournisseur" class="form-label fw-semibold">
+            <i class="bi bi-truck me-1"></i>Nom Fournisseur
+          </label>
+          <div class="input-group input-group-lg">
+            <input
+              type="text"
+              class="form-control"
+              id="nomFournisseur"
+              name="nomFournisseur"
+              [(ngModel)]="searchTerm"
+              placeholder="Entrez un nom de fournisseur..."
+              (keyup.enter)="onSearch()"
+            />
+            <button class="btn btn-primary" type="button" (click)="onSearch()">
+              <i class="bi bi-search me-1"></i>Rechercher
+            </button>
+          </div>
+          <small class="text-muted">Laissez vide pour afficher tous les fournisseurs</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Table Card -->
+  <div class="card border-0 shadow-sm">
+    <div class="card-header bg-white border-bottom py-3">
+      <div class="d-flex justify-content-between align-items-center">
+        <h5 class="mb-0 fw-semibold">
+          <i class="bi bi-table me-2 text-muted"></i>Liste des Fournisseurs
+        </h5>
+        <span class="badge bg-primary rounded-pill">{{ suppliers().length }} fournisseur(s)</span>
+      </div>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="table-light">
+            <tr>
+              <th class="ps-4">#</th>
+              <th>Nom</th>
+              <th>Numéro fiscal</th>
+              <th>Téléphone</th>
+              <th>Adresse</th>
+              <th>Catégorie</th>
+              <th>Créé le</th>
+              <th>Modifié le</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if (suppliers().length === 0) {
+              <tr>
+                <td colspan="8" class="text-center text-muted py-5">
+                  <i class="bi bi-inbox fs-1 d-block mb-2"></i>
+                  Aucun fournisseur trouvé
+                </td>
+              </tr>
+            }
+            @for (supplier of suppliers(); track supplier.id; let index = $index) {
+              <tr>
+                <td class="ps-4 fw-semibold text-muted">{{ index + 1 }}</td>
+                <td>
+                  <div class="fw-semibold">{{ supplier.name }}</div>
+                  <small class="text-muted">ID: {{ supplier.id }}</small>
+                </td>
+                <td>{{ supplier.tax_number }}</td>
+                <td>{{ supplier.telephone_number }}</td>
+                <td>{{ supplier.address }}</td>
+                <td>
+                  @if (supplier.categoryName) {
+                    <span class="badge bg-info-subtle text-info px-3 py-2">
+                      <i class="bi bi-tag me-1"></i>{{ supplier.categoryName }}
+                    </span>
+                  } @else {
+                    <span class="badge bg-secondary-subtle text-secondary px-3 py-2">Non assignée</span>
+                  }
+                </td>
+                <td>
+                  <small class="text-muted">
+                    <i class="bi bi-calendar3 me-1"></i>{{ supplier.created_at | date:'dd/MM/yyyy' }}
+                  </small>
+                </td>
+                <td>
+                  <small class="text-muted">
+                    <i class="bi bi-clock me-1"></i>{{ supplier.updated_at | date:'dd/MM/yyyy' }}
+                  </small>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -45,6 +45,10 @@ export class ProductEdit implements OnInit {
   }
 
   updateProduct() {
+    if (this.currentProduct.stock == null || this.currentProduct.stock < 0) {
+      alert('La quantité du produit doit être supérieure à 0');
+      return;
+    }
     this.currentProduct.categoryId = this.updatedCatId;
     this.currentProduct.supplierId = this.updatedSupplierId;
     this.product.updateProduct(this.currentProduct).subscribe(() => {

@@ -43,4 +43,20 @@ export class Supplier {
   listCategories(): Observable<CategoryModel[]> {
     return this.http.get<CategoryModel[]>(environment.apiURL + "/categories");
   }
+
+  createCategory(cat: CategoryModel): Observable<CategoryModel> {
+    return this.http.post<CategoryModel>(environment.apiURL + "/categories", cat, httpOptions);
+  }
+
+  updateCategory(cat: CategoryModel): Observable<CategoryModel> {
+    return this.http.put<CategoryModel>(`${environment.apiURL}/categories/${cat.id}`, cat, httpOptions);
+  }
+
+  searchByCategory(categoryId: number): Observable<SupplierModel[]> {
+    return this.http.get<SupplierModel[]>(`${environment.apiURL}/suppliers/category/${categoryId}`);
+  }
+
+  searchByName(name: string): Observable<SupplierModel[]> {
+    return this.http.get<SupplierModel[]>(`${environment.apiURL}/suppliers/name/${name}`);
+  }
 }

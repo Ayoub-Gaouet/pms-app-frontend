@@ -1,36 +1,35 @@
 import {Component, OnInit, signal} from '@angular/core';
 import {CategoryModel} from '../../models/category.model';
-import {Product} from '../../services/product';
+import {Supplier} from '../../services/supplier';
 import {CategoryUpdate} from '../../components/category-update/category-update';
 
 @Component({
-  selector: 'app-category-list',
+  selector: 'app-supplier-category-list',
   imports: [CategoryUpdate],
-  templateUrl: './category-list.html',
+  templateUrl: './supplier-category-list.html',
 })
-export class CategoryList implements OnInit {
+export class SupplierCategoryList implements OnInit {
   categories = signal<CategoryModel[]>([]);
   updatedCategory = signal<CategoryModel>(new CategoryModel());
   isAdd = signal<boolean>(true);
   successMessage = signal<string | null>(null);
 
-  constructor(private productService: Product) {}
+  constructor(private supplierService: Supplier) {}
 
   ngOnInit(): void {
     this.loadCategories();
   }
 
   loadCategories() {
-    this.productService.listCategories().subscribe(cats => {
+    this.supplierService.listCategories().subscribe(cats => {
       this.categories.set(cats);
       console.log('Catégories chargées :', cats);
     });
   }
 
   categoryUpdated(cat: CategoryModel) {
-    console.log('Category updated event', cat);
     if (this.isAdd()) {
-      this.productService.createCategory(cat).subscribe(() => {
+      this.supplierService.createCategory(cat).subscribe(() => {
         this.isAdd.set(true);
         this.updatedCategory.set(new CategoryModel());
         this.successMessage.set('Catégorie créée avec succès !');
@@ -38,7 +37,7 @@ export class CategoryList implements OnInit {
         this.loadCategories();
       });
     } else {
-      this.productService.updateCategory(cat).subscribe(() => {
+      this.supplierService.updateCategory(cat).subscribe(() => {
         this.isAdd.set(true);
         this.updatedCategory.set(new CategoryModel());
         this.successMessage.set('Catégorie mise à jour avec succès !');

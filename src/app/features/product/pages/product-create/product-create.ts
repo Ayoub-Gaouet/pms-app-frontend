@@ -26,6 +26,10 @@ export class ProductCreate implements OnInit {
 
 
   createProduct() {
+    if (this.newProduct.stock == null || this.newProduct.stock <= 0) {
+      this.message = 'La quantité du produit doit être supérieure à 0';
+      return;
+    }
     this.newProduct.categoryId = this.newIdCat;
     this.newProduct.supplierId = this.newIdSupplier;
     this.product.createProduct(this.newProduct)

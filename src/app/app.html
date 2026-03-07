@@ -64,7 +64,7 @@
               <hr class="dropdown-divider">
             </li>
             <li>
-              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/categories"
+              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/product-categories"
                  routerLinkActive="active">
                 <i class="bi bi-tags"></i> Gestion des catégories
               </a>
@@ -90,13 +90,40 @@
               <hr class="dropdown-divider">
             </li>
             @if (authService.isAdmin()) {
+              <li>
+                <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/supplier-create"
+                   routerLinkActive="active">
+                  <i class="bi bi-plus-circle"></i> Ajouter un fournisseur
+                </a>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+            }
             <li>
-              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/supplier-create"
+              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/suppliers-category-search"
                  routerLinkActive="active">
-                <i class="bi bi-plus-circle"></i> Ajouter un fournisseur
+                <i class="bi bi-search"></i> Recherche par catégorie
               </a>
             </li>
-            }
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/suppliers-name-search"
+                 routerLinkActive="active">
+                <i class="bi bi-search"></i> Recherche par nom
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/supplier-categories"
+                 routerLinkActive="active">
+                <i class="bi bi-tags"></i> Gestion des catégories
+              </a>
+            </li>
           </ul>
         </li>
       </ul>
