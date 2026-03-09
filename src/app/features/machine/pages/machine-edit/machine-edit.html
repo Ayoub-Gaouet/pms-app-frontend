@@ -1,0 +1,39 @@
+<div class="container">
+    <div>
+        <h2>Modifier une Machine :</h2>
+    </div>
+    <form (ngSubmit)="updateMachine()" #form="ngForm">
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>ID Machine</label>
+            <input readonly type="text" [(ngModel)]="currentMachine().id" name="id" class="form-control">
+        </div>
+
+        <div class="col-sm-4 col-md-4 col-lg-4 mt-2">
+            <label>Nom de la machine</label>
+            <input type="text" [(ngModel)]="currentMachine().nom" name="nom" class="form-control" required />
+        </div>
+
+        <div class="col-sm-4 col-md-4 col-lg-4 mt-2">
+            <label>État</label>
+            <select class="form-control form-control-lg" name="etat" [(ngModel)]="currentMachine().etat" required>
+                @for(etat of etats; track etat) {
+                <option [ngValue]="etat">{{ etat }}</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-sm-4 col-md-4 col-lg-4 mt-2">
+            <label>Prochaine maintenance</label>
+            <input type="date" [(ngModel)]="currentMachine().maintenanceProchaine" name="maintenanceProchaine"
+                class="form-control" />
+        </div>
+
+        <div class="mt-2">
+            <button type="submit" [disabled]="!form.form.valid" class="btn btn-success">Modifier</button>
+        </div>
+
+        <div class="mt-2" *ngIf="message">
+            <h3>{{ message }}</h3>
+        </div>
+    </form>
+</div>
