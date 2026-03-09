@@ -1,0 +1,34 @@
+<div class="container">
+  <div>
+    <h2>Ajouter un Technicien :</h2>
+  </div>
+  <form (ngSubmit)="createTechnician()" #form="ngForm">
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Nom du Technicien</label>
+      <input type="text" [(ngModel)]="newTechnician.nom" name="nom" class="form-control" required />
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Compétence</label>
+      <select class="form-control form-control-lg" name="skillId" [(ngModel)]="skillId" required>
+        @for(skill of skills(); track skill.id) {
+        <option [ngValue]="skill.id">{{ skill.name }}</option>
+        }
+      </select>
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4 mt-2">
+      <label>Machine Assignée (Optionnelle)</label>
+      <select class="form-control form-control-lg" name="machineId" [(ngModel)]="machineId">
+        <option [ngValue]="undefined">Aucune machine</option>
+        @for(machine of machines(); track machine.id) {
+        <option [ngValue]="machine.id">{{ machine.nom }}</option>
+        }
+      </select>
+    </div>
+    <div class="mt-2">
+      <button type="submit" [disabled]="!form.form.valid" class="btn btn-success">Ajouter</button>
+    </div>
+    <div class="mt-2">
+      <div *ngIf="message" class="alert alert-danger">{{ message }}</div>
+    </div>
+  </form>
+</div>

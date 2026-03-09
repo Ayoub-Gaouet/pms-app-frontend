@@ -4,11 +4,12 @@
     <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" routerLink="/products">
       <i class="bi bi-gear-wide-connected fs-4 text-primary"></i>
       <span>PMS</span>
-      <span class="badge bg-primary bg-opacity-25 text-white fs-6 fw-normal d-none d-md-inline">Production Management System</span>
+      <span class="badge bg-primary bg-opacity-25 text-white fs-6 fw-normal d-none d-md-inline">Production Management
+        System</span>
     </a>
     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -21,8 +22,7 @@
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" href="#" id="navbarDropdown" role="button"
-             data-bs-toggle="dropdown"
-             aria-expanded="false">
+            data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-box-seam"></i> Produits
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
@@ -37,7 +37,7 @@
             @if (authService.isAdmin()) {
             <li>
               <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/product-create"
-                 routerLinkActive="active">
+                routerLinkActive="active">
                 <i class="bi bi-plus-circle"></i> Ajouter un produit
               </a>
             </li>
@@ -47,7 +47,7 @@
             }
             <li>
               <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/products-category-search"
-                 routerLinkActive="active">
+                routerLinkActive="active">
                 <i class="bi bi-search"></i> Recherche par catégorie
               </a>
             </li>
@@ -56,7 +56,7 @@
             </li>
             <li>
               <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/products-name-search"
-                 routerLinkActive="active">
+                routerLinkActive="active">
                 <i class="bi bi-search"></i> Recherche par nom
               </a>
             </li>
@@ -65,7 +65,7 @@
             </li>
             <li>
               <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/product-categories"
-                 routerLinkActive="active">
+                routerLinkActive="active">
                 <i class="bi bi-tags"></i> Gestion des catégories
               </a>
             </li>
@@ -75,14 +75,13 @@
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" href="#" id="navbarDropdownSupplier"
-             role="button" data-bs-toggle="dropdown"
-             aria-expanded="false">
+            role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-truck"></i> Fournisseurs
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownSupplier">
             <li>
               <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/suppliers"
-                 routerLinkActive="active">
+                routerLinkActive="active">
                 <i class="bi bi-list-ul"></i> Liste des fournisseurs
               </a>
             </li>
@@ -90,19 +89,19 @@
               <hr class="dropdown-divider">
             </li>
             @if (authService.isAdmin()) {
-              <li>
-                <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/supplier-create"
-                   routerLinkActive="active">
-                  <i class="bi bi-plus-circle"></i> Ajouter un fournisseur
-                </a>
-              </li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/supplier-create"
+                routerLinkActive="active">
+                <i class="bi bi-plus-circle"></i> Ajouter un fournisseur
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
             }
             <li>
               <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/suppliers-category-search"
-                 routerLinkActive="active">
+                routerLinkActive="active">
                 <i class="bi bi-search"></i> Recherche par catégorie
               </a>
             </li>
@@ -111,7 +110,7 @@
             </li>
             <li>
               <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/suppliers-name-search"
-                 routerLinkActive="active">
+                routerLinkActive="active">
                 <i class="bi bi-search"></i> Recherche par nom
               </a>
             </li>
@@ -120,10 +119,90 @@
             </li>
             <li>
               <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/supplier-categories"
-                 routerLinkActive="active">
+                routerLinkActive="active">
                 <i class="bi bi-tags"></i> Gestion des catégories
               </a>
             </li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" href="#" id="navbarDropdownSupplier"
+            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-truck"></i> Techniciens
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownSupplier">
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/technicians"
+                routerLinkActive="active">
+                <i class="bi bi-list-ul"></i> Liste des techniciens
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            @if (authService.isAdmin()) {
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/technician-create"
+                routerLinkActive="active">
+                <i class="bi bi-plus-circle"></i> Ajouter un technicien
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            }
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/technicians-skill-search"
+                routerLinkActive="active">
+                <i class="bi bi-search"></i> Recherche par compétence
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/technicians-name-search"
+                routerLinkActive="active">
+                <i class="bi bi-search"></i> Recherche par nom
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/technicians-skills"
+                routerLinkActive="active">
+                <i class="bi bi-tags"></i> Gestion des compétences
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" href="#" id="navbarDropdownMachine"
+            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-cpu"></i> Machines
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMachine">
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/machines" routerLinkActive="active">
+                <i class="bi bi-list-ul"></i> Liste des machines
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            @if (authService.isAdmin()) {
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/machine-create"
+                routerLinkActive="active">
+                <i class="bi bi-plus-circle"></i> Ajouter une machine
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            }
           </ul>
         </li>
       </ul>
@@ -131,37 +210,38 @@
       <ul class="navbar-nav ms-auto">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#" id="navbarDropdownUser"
-             role="button" data-bs-toggle="dropdown"
-             aria-expanded="false">
+            role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center"
-                 style="width: 32px; height: 32px;">
+              style="width: 32px; height: 32px;">
               <i class="bi bi-person-fill text-white"></i>
             </div>
             @if (authService.isloggedIn) {
-              <span class="d-none d-md-inline">[{{ authService.loggedUser }}]</span>
+            <span class="d-none d-md-inline">[{{ authService.loggedUser }}]</span>
             } @else {
-              <span class="d-none d-md-inline">Compte</span>
+            <span class="d-none d-md-inline">Compte</span>
             }
           </a>
           <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdownUser">
             @if (authService.isloggedIn) {
-              <li>
-                <a class="dropdown-item d-flex align-items-center gap-2" href="#">
-                  <i class="bi bi-person-circle"></i> Profil
-                </a>
-              </li>
-              <li><hr class="dropdown-divider"></li>
-              <li>
-                <a class="dropdown-item d-flex align-items-center gap-2 text-danger" href="#" (click)="onLogout()">
-                  <i class="bi bi-box-arrow-right"></i> Déconnexion
-                </a>
-              </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                <i class="bi bi-person-circle"></i> Profil
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2 text-danger" href="#" (click)="onLogout()">
+                <i class="bi bi-box-arrow-right"></i> Déconnexion
+              </a>
+            </li>
             } @else {
-              <li>
-                <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/login">
-                  <i class="bi bi-box-arrow-in-right"></i> Connexion
-                </a>
-              </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/login">
+                <i class="bi bi-box-arrow-in-right"></i> Connexion
+              </a>
+            </li>
             }
           </ul>
         </li>
@@ -172,5 +252,5 @@
 }
 
 <main class="bg-light min-vh-100">
-  <router-outlet/>
+  <router-outlet />
 </main>

@@ -1,0 +1,40 @@
+<div class="container">
+  <div>
+    <h2>Modifier un Technicien :</h2>
+  </div>
+  <form>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>ID Technicien</label>
+      <input readonly type="text" [(ngModel)]="currentTechnician.id" name="id" class="form-control">
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Nom du Technicien</label>
+      <input type="text" [(ngModel)]="currentTechnician.nom" name="nom" class="form-control">
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Compétence</label>
+      <select class="form-control form-control-lg" id="idSkill" name="idSkill" [(ngModel)]="updatedSkillId">
+        @for(skill of skills(); track skill.id)
+        {
+        <option [ngValue]="skill.id"> {{skill.name}} </option>
+        }
+      </select>
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Machine Assignée (Optionnelle)</label>
+      <select class="form-control form-control-lg" id="idMachine" name="idMachine" [(ngModel)]="updatedMachineId">
+        <option [ngValue]="undefined">Aucune machine</option>
+        @for(m of machines(); track m.id)
+        {
+        <option [ngValue]="m.id"> {{m.nom}} </option>
+        }
+      </select>
+    </div>
+    <div class="mt-2">
+      <button type="submit" (click)="updateTechnician()" class="btn btn-success">Modifier</button>
+    </div>
+  </form>
+</div>
