@@ -1,3 +1,48 @@
+# PMS App Frontend
+
+## Description du projet
+Ce projet est une application de gestion de production (Production Management System) développée avec Angular. Elle permet la gestion des machines, produits, fournisseurs et techniciens dans un environnement industriel.
+
+## Technologies utilisées
+- Angular 21
+- Bootstrap 5
+- Nginx (pour servir l’application en production)
+- Docker & Docker Compose
+
+## Prérequis
+- [Docker](https://www.docker.com/products/docker-desktop) installé
+- [Docker Compose](https://docs.docker.com/compose/) installé
+
+## Instructions d’installation et d’exécution
+
+### 1. Cloner le dépôt
+```bash
+git clone <url-du-repo>
+cd pms-app-frontend
+```
+
+### 2. Construire et lancer l’application avec Docker Compose
+```bash
+docker-compose up --build
+```
+L’application sera accessible sur [http://localhost:8080](http://localhost:8080)
+
+### 3. Arrêter les conteneurs
+```bash
+docker-compose down
+```
+
+## Structure du projet
+- `src/` : code source Angular
+- `Dockerfile` : construction de l’image Docker
+- `docker-compose.yml` : orchestration du conteneur
+- `nginx.conf` : configuration du serveur Nginx
+
+## Auteur
+- Ayoub GAOUET
+
+---
+
 # PmsApp
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.5.
